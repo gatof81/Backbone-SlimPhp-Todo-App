@@ -77,7 +77,7 @@ $app->get('/api/todos/', function () use ($app) {
 	$response->status(200);
 
 	$response->body(json_encode($rows));
-
+	mysql_close($connect);
 
 });
 
@@ -110,6 +110,7 @@ $app->post('/api/todos/', function () use ($app) {
 	$response->status(200);
 
 	$response->body(json_encode(array('id' => mysql_insert_id())));
+	mysql_close($connect);
 
 });
 
@@ -147,6 +148,7 @@ $app->put('/api/todos/:id', function ($id) use ($app) {
 	$response->status(200);
 
 	$response->body(json_encode($json_a));
+	mysql_close($connect);
 
 });
 
@@ -172,6 +174,7 @@ $app->delete('/api/todos/:id', function ($id) use ($app) {
 	$response->status(200);
 
 	$response->body(json_encode($json_a));
+	mysql_close($connect);
 
 });
 
@@ -292,6 +295,7 @@ $app->post('/auth/process', function () use ($app) {
 	$_SESSION['name'] = $Name;
 
 	$app->redirect('/#app');
+	mysql_close($connect);
 	
 });
 
